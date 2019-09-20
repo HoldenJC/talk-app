@@ -14,7 +14,7 @@ A social media website that incorporates latest news into user content feeds.
 
 ## Component Diagram
 
-![alt-text](https://github.com/HoldenJC/tap-room-react/blob/master/component-diagram.png)
+![alt-text](https://github.com/HoldenJC/talk-app/blob/master/component-diagram.png)
 
 ## Known Bugs
 * _TBD_
