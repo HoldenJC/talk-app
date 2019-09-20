@@ -14,7 +14,7 @@ A social media website that incorporates latest news into user content feeds.
 
 ## Component Diagram
 
-* _TBD_
+![alt-text](https://github.com/HoldenJC/tap-room-react/blob/master/component-diagram.png)
 
 ## Known Bugs
 * _TBD_
@@ -35,4 +35,4 @@ Copyright (c) 2019 **_Holden Clark_**
 
 This application is licensed under the MIT license.
 
-[Link to this project's repository on GitHub](https://github.com/HoldenJC/)
+[Link to this project's repository on GitHub](https://github.com/HoldenJC/talk-app)
