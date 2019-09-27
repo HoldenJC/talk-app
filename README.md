@@ -16,6 +16,9 @@ A social media website that incorporates latest news into user content feeds.
 
 ![alt-text](https://github.com/HoldenJC/talk-app/blob/master/component-diagram.png)
 
+## UI Mockup
+![alt-text](https://github.com/HoldenJC/talk-app/blob/master/ui-mockup.png)
+
 ## Known Bugs
 * _TBD_
 
