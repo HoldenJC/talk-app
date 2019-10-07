@@ -5,7 +5,7 @@ import NavButton from '../util/NavButton'
 
 // Redux imports
 import { connect } from 'react-redux'
-import { postTalk } from '../redux/actions/dataActions'
+import { postTalk, clearErrors } from '../redux/actions/dataActions'
 
 // Material UI imports
 import Button from '@material-ui/core/Button'
@@ -52,9 +52,10 @@ class PostTalk extends Component {
 		}
 		if (!nextProps.UI.errors && !nextProps.UI.loading) {
 			this.setState({
-				body : ''
+				body   : '',
+				open   : false,
+				errors : {}
 			})
-			this.handleClose()
 		}
 	}
 
@@ -62,6 +63,7 @@ class PostTalk extends Component {
 		this.setState({ open: true })
 	}
 	handleClose = () => {
+		this.props.clearErrors()
 		this.setState({ open: false, errors: {} })
 	}
 	handleChange = (event) => {
@@ -133,12 +135,13 @@ class PostTalk extends Component {
 }
 
 PostTalk.propTypes = {
-	postTalk : PropTypes.func.isRequired,
-	UI       : PropTypes.object.isRequired
+	postTalk    : PropTypes.func.isRequired,
+	clearErrors : PropTypes.func.isRequired,
+	UI          : PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({
 	UI : state.UI
 })
 
-export default connect(mapStateToProps, { postTalk })(withStyles(styles)(PostTalk))
+export default connect(mapStateToProps, { postTalk, clearErrors })(withStyles(styles)(PostTalk))
