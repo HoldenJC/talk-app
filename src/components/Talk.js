@@ -4,11 +4,23 @@ import Typography from '@material-ui/core/Typography'
 import { Link } from 'react-router-dom'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
+import PropTypes from 'prop-types'
+import NavButton from '../util/NavButton'
 
 // material ui imports
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
+
+// material ui icons
+import ChatIcon from '@material-ui/icons/Chat'
+import FavoriteIcon from '@material-ui/icons/Favorite'
+import FavoriteBorder from '@material-ui/icons/FavoriteBorder'
+
+// Redux imports
+import { connect } from 'react-redux'
+import { likeTalk, unlikeTalk } from '../redux/actions/dataActions'
+import { SET_TALKS } from '../redux/types'
 
 const styles = {
 	card: {
@@ -26,12 +38,40 @@ const styles = {
 }
 
 class Talk extends Component {
+	likedTalk = () => {
+		if (this.props.user.likes && this.props.user.likes.find((like) => like.talkId === this.props.talk.talkId))
+			return true
+		else return false
+	}
+
+	likeTalk = () => {
+		this.props.likeTalk(this.props.talk.talkId)
+	}
+	unlikeTalk = () => {
+		this.props.unlikeTalk(this.props.talk.talkId)
+	}
 	render() {
 		dayjs.extend(relativeTime)
 		const {
 			classes,
+			user: { authenticated },
 			talk: { body, createdAt, userImage, userHandle, talkId, likeCount, commentCount }
 		} = this.props
+		const likeButton = !authenticated ? (
+			<NavButton tip="like">
+				<Link to="/login">
+					<FavoriteBorder color="primary" />
+				</Link>
+			</NavButton>
+		) : this.likedTalk() ? (
+			<NavButton tip="unlike" onClick={this.unlikeTalk}>
+				<FavoriteIcon color="primary" />
+			</NavButton>
+		) : (
+			<NavButton tip="like" onClick={this.likeTalk}>
+				<FavoriteBorder color="primary" />
+			</NavButton>
+		)
 		return (
 			<Card className={classes.card}>
 				<CardMedia image={userImage} title="Profile Picture" className={classes.image} />
@@ -45,10 +85,32 @@ class Talk extends Component {
 					<Typography variant="body1" color="textPrimary">
 						{body}
 					</Typography>
+					{likeButton}
+					<span>{likeCount} Likes</span>
+					<NavButton tip="comments">
+						<ChatIcon color="primary" />
+					</NavButton>
+					<span>{commentCount} Comments</span>
 				</CardContent>
 			</Card>
 		)
 	}
 }
 
-export default withStyles(styles)(Talk)
+Talk.propTypes = {
+	likeTalk: PropTypes.func.isRequired,
+	unlikeTalk: PropTypes.func.isRequired,
+	user: PropTypes.object.isRequired,
+	talk: PropTypes.object.isRequired,
+	classes: PropTypes.object.isRequired
+}
+
+const mapStateToProps = (state) => ({
+	user: state.user
+})
+
+const mapActionsToProps = {
+	likeTalk,
+	unlikeTalk
+}
+export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(Talk))
