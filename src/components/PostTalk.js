@@ -22,7 +22,11 @@ import CloseIcon from '@material-ui/icons/Close'
 const styles = (theme) => ({
 	...theme.themeStyle,
 	submitButton    : {
-		position : 'relative'
+		position  : 'relative',
+		float     : 'right',
+		margin    : '10px auto',
+		width     : '100%',
+		textAlign : 'center'
 	},
 	progressSpinner : {
 		position : 'absolute'
@@ -30,7 +34,7 @@ const styles = (theme) => ({
 	closeButton     : {
 		position : 'absolute',
 		left     : '90%',
-		top      : '10%'
+		top      : '4%'
 	}
 })
 
