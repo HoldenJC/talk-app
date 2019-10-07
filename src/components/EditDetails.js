@@ -18,24 +18,24 @@ import EditIcon from '@material-ui/icons/Edit'
 
 const styles = (theme) => ({
 	...theme.themeStyle,
-	button: {
-		float: 'right'
+	button : {
+		float : 'right'
 	}
 })
 
 class EditDetails extends Component {
 	state = {
-		bio: '',
-		website: '',
-		location: '',
-		open: false
+		bio      : '',
+		website  : '',
+		location : '',
+		open     : false
 	}
 
 	mapUserDetailsToState = (credentials) => {
 		this.setState({
-			bio: credentials.bio ? credentials.bio : '',
-			website: credentials.website ? credentials.website : '',
-			location: credentials.location ? credentials.location : ''
+			bio      : credentials.bio ? credentials.bio : '',
+			website  : credentials.website ? credentials.website : '',
+			location : credentials.location ? credentials.location : ''
 		})
 	}
 	handleOpen = () => {
@@ -57,9 +57,9 @@ class EditDetails extends Component {
 	}
 	handleSubmit = () => {
 		const userDetails = {
-			bio: this.state.bio,
-			website: this.state.website,
-			location: this.state.location
+			bio      : this.state.bio,
+			website  : this.state.website,
+			location : this.state.location
 		}
 		this.props.editUserDetails(userDetails)
 		this.handleClose()
@@ -133,12 +133,12 @@ class EditDetails extends Component {
 }
 
 EditDetails.propTypes = {
-	editUserDetails: PropTypes.func.isRequired,
-	classes: PropTypes.object.isRequired
+	editUserDetails : PropTypes.func.isRequired,
+	classes         : PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({
-	credentials: state.user.credentials
+	credentials : state.user.credentials
 })
 
 export default connect(mapStateToProps, { editUserDetails })(withStyles(styles)(EditDetails))

@@ -1,9 +1,9 @@
-import { SET_TALKS, LIKE_TALK, UNLIKE_TALK, LOADING_DATA, DELETE_TALK } from '../types'
+import { SET_TALKS, LIKE_TALK, UNLIKE_TALK, LOADING_DATA, DELETE_TALK, POST_TALK } from '../types'
 
 const initialState = {
-	talks: [],
-	talk: {},
-	loading: false
+	talks   : [],
+	talk    : {},
+	loading : false
 }
 
 export default function(state = initialState, action) {
@@ -11,13 +11,13 @@ export default function(state = initialState, action) {
 		case LOADING_DATA:
 			return {
 				...state,
-				loading: true
+				loading : true
 			}
 		case SET_TALKS:
 			return {
 				...state,
-				talks: action.payload,
-				loading: false
+				talks   : action.payload,
+				loading : false
 			}
 		case LIKE_TALK:
 		case UNLIKE_TALK:
@@ -31,6 +31,14 @@ export default function(state = initialState, action) {
 			state.talks.splice(index, 1)
 			return {
 				...state
+			}
+		case POST_TALK:
+			return {
+				...state,
+				talks : [
+					action.payload,
+					...state.talks
+				]
 			}
 		default:
 			return state

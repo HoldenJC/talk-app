@@ -15,49 +15,48 @@ import DeleteOutline from '@material-ui/icons/DeleteOutline'
 
 import { connect } from 'react-redux'
 import { deleteTalk } from '../redux/actions/dataActions'
-import { ThemeProvider } from '@material-ui/styles'
 import theme from '../util/theme'
 
 const styles = {
 	...theme.themeStyle,
-	dialogTitle: {
-		textAlign: 'center'
+	dialogTitle   : {
+		textAlign : 'center'
 	},
-	cancelButton: {
-		float: 'left',
-		margin: '0 auto',
-		textAlign: 'center'
+	cancelButton  : {
+		float     : 'left',
+		margin    : '0 auto',
+		textAlign : 'center'
 	},
-	confirmButton: {
-		float: 'right',
-		margin: '0 auto',
-		textAlign: 'center'
+	confirmButton : {
+		float     : 'right',
+		margin    : '0 auto',
+		textAlign : 'center'
 	},
-	deleteButton: {
-		position: 'absolute',
-		left: '90%',
-		top: '10%'
+	deleteButton  : {
+		position : 'absolute',
+		left     : '90%',
+		top      : '10%'
 	}
 }
 
 class DeleteTalk extends Component {
 	state = {
-		open: false
+		open : false
 	}
 	handleOpen = () => {
 		this.setState({
-			open: true
+			open : true
 		})
 	}
 	handleClose = () => {
 		this.setState({
-			open: false
+			open : false
 		})
 	}
 	deleteTalk = () => {
 		this.props.deleteTalk(this.props.talkId)
 		this.setState({
-			open: false
+			open : false
 		})
 	}
 
@@ -85,9 +84,9 @@ class DeleteTalk extends Component {
 }
 
 DeleteTalk.propTypes = {
-	deleteTalk: PropTypes.func.isRequired,
-	classes: PropTypes.object.isRequired,
-	talkId: PropTypes.string.isRequired
+	deleteTalk : PropTypes.func.isRequired,
+	classes    : PropTypes.object.isRequired,
+	talkId     : PropTypes.string.isRequired
 }
 
 export default connect(null, { deleteTalk })(withStyles(styles)(DeleteTalk))

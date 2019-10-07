@@ -23,9 +23,9 @@ class login extends Component {
 	constructor() {
 		super()
 		this.state = {
-			email: '',
-			password: '',
-			errors: {}
+			email    : '',
+			password : '',
+			errors   : {}
 		}
 	}
 
@@ -38,8 +38,8 @@ class login extends Component {
 	handleSubmit = (event) => {
 		event.preventDefault()
 		const userData = {
-			email: this.state.email,
-			password: this.state.password
+			email    : this.state.email,
+			password : this.state.password
 		}
 		this.props.loginUser(userData, this.props.history)
 	}
@@ -115,15 +115,15 @@ class login extends Component {
 }
 
 login.propTypes = {
-	classes: PropTypes.object.isRequired,
-	loginUser: PropTypes.func.isRequired,
-	user: PropTypes.object.isRequired,
-	UI: PropTypes.object.isRequired
+	classes   : PropTypes.object.isRequired,
+	loginUser : PropTypes.func.isRequired,
+	user      : PropTypes.object.isRequired,
+	UI        : PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({
-	user: state.user,
-	UI: state.UI
+	user : state.user,
+	UI   : state.UI
 })
 
 export default connect(mapStateToProps, { loginUser })(withStyles(styles)(login))

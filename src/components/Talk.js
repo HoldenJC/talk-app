@@ -24,17 +24,17 @@ import { likeTalk, unlikeTalk } from '../redux/actions/dataActions'
 import { SET_TALKS } from '../redux/types'
 
 const styles = {
-	card: {
-		position: 'relative',
-		display: 'flex',
-		margin: 20
+	card    : {
+		position : 'relative',
+		display  : 'flex',
+		margin   : 20
 	},
-	image: {
-		minWidth: 200
+	image   : {
+		minWidth : 200
 	},
-	content: {
-		padding: 25,
-		objectFit: 'cover'
+	content : {
+		padding   : 25,
+		objectFit : 'cover'
 	}
 }
 
@@ -55,8 +55,8 @@ class Talk extends Component {
 		dayjs.extend(relativeTime)
 		const {
 			classes,
-			user: { authenticated, credentials: { handle } },
-			talk: { body, createdAt, userImage, userHandle, talkId, likeCount, commentCount }
+			user    : { authenticated, credentials: { handle } },
+			talk    : { body, createdAt, userImage, userHandle, talkId, likeCount, commentCount }
 		} = this.props
 		const likeButton = !authenticated ? (
 			<NavButton tip="like">
@@ -101,15 +101,15 @@ class Talk extends Component {
 }
 
 Talk.propTypes = {
-	likeTalk: PropTypes.func.isRequired,
-	unlikeTalk: PropTypes.func.isRequired,
-	user: PropTypes.object.isRequired,
-	talk: PropTypes.object.isRequired,
-	classes: PropTypes.object.isRequired
+	likeTalk   : PropTypes.func.isRequired,
+	unlikeTalk : PropTypes.func.isRequired,
+	user       : PropTypes.object.isRequired,
+	talk       : PropTypes.object.isRequired,
+	classes    : PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({
-	user: state.user
+	user : state.user
 })
 
 const mapActionsToProps = {

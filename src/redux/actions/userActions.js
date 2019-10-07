@@ -13,8 +13,8 @@ export const loginUser = (userData, history) => (dispatch) => {
 		})
 		.catch((err) => {
 			dispatch({
-				type: SET_ERRORS,
-				payload: err.response.data
+				type    : SET_ERRORS,
+				payload : err.response.data
 			})
 		})
 }
@@ -37,8 +37,8 @@ export const signupUser = (newUserData, history) => (dispatch) => {
 		})
 		.catch((err) => {
 			dispatch({
-				type: SET_ERRORS,
-				payload: err.response.data
+				type    : SET_ERRORS,
+				payload : err.response.data
 			})
 		})
 }
@@ -49,8 +49,8 @@ export const getUserData = () => (dispatch) => {
 		.get('/user')
 		.then((res) => {
 			dispatch({
-				type: SET_USER,
-				payload: res.data
+				type    : SET_USER,
+				payload : res.data
 			})
 		})
 		.catch((err) => console.log(err))

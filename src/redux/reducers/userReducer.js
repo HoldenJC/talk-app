@@ -1,11 +1,11 @@
 import { SET_USER, SET_AUTHENTICATED, SET_UNAUTHENTICATED, LOADING_USER, LIKE_TALK, UNLIKE_TALK } from '../types'
 
 const initialState = {
-	authenticated: false,
-	loading: false,
-	credentials: {},
-	likes: [],
-	notifications: []
+	authenticated : false,
+	loading       : false,
+	credentials   : {},
+	likes         : [],
+	notifications : []
 }
 
 export default function(state = initialState, action) {
@@ -13,36 +13,36 @@ export default function(state = initialState, action) {
 		case SET_AUTHENTICATED:
 			return {
 				...state,
-				authenticated: true
+				authenticated : true
 			}
 		case SET_UNAUTHENTICATED:
 			return initialState
 		case SET_USER:
 			return {
-				authenticated: true,
-				loading: false,
+				authenticated : true,
+				loading       : false,
 				...action.payload
 			}
 		case LOADING_USER:
 			return {
 				...state,
-				loading: true
+				loading : true
 			}
 		case LIKE_TALK:
 			return {
 				...state,
-				likes: [
+				likes : [
 					state.likes,
 					{
-						userHandle: state.credentials.handle,
-						talkId: action.payload.talkId
+						userHandle : state.credentials.handle,
+						talkId     : action.payload.talkId
 					}
 				]
 			}
 		case UNLIKE_TALK:
 			return {
 				...state,
-				likes: state.likes.filter((like) => like.talkId !== action.payload.talkId)
+				likes : state.likes.filter((like) => like.talkId !== action.payload.talkId)
 			}
 		default:
 			return state

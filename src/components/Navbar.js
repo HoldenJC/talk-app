@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import NavButton from '../util/NavButton'
 import LogoIcon from '../images/logo.svg'
+import PostTalk from './PostTalk'
 
 // material ui imports
 import AppBar from '@material-ui/core/AppBar'
@@ -11,8 +12,6 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Button from '@material-ui/core/Button'
 
 // material UI icon imports
-import AddIcon from '@material-ui/icons/Add'
-import HomeIcon from '@material-ui/icons/Home'
 import Notifications from '@material-ui/icons/Notifications'
 
 class Navbar extends Component {
@@ -23,9 +22,7 @@ class Navbar extends Component {
 				<Toolbar className="nav-container">
 					{authenticated ? (
 						<Fragment>
-							<NavButton tip="Start talking">
-								<AddIcon />
-							</NavButton>
+							<PostTalk />
 							<Link to="/">
 								<NavButton tip="Home">
 									<img src={LogoIcon} style={{ width: '35px' }} />
@@ -55,11 +52,11 @@ class Navbar extends Component {
 }
 
 Navbar.propTypes = {
-	authenticated: PropTypes.bool.isRequired
+	authenticated : PropTypes.bool.isRequired
 }
 
 const mapStateToProps = (state) => ({
-	authenticated: state.user.authenticated
+	authenticated : state.user.authenticated
 })
 
 export default connect(mapStateToProps)(Navbar)

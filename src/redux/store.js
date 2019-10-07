@@ -7,12 +7,14 @@ import uiReducer from './reducers/uiReducer'
 
 const initialState = {}
 
-const middleware = [ thunk ]
+const middleware = [
+	thunk
+]
 
 const reducers = combineReducers({
-	user: userReducer,
-	data: dataReducer,
-	UI: uiReducer
+	user : userReducer,
+	data : dataReducer,
+	UI   : uiReducer
 })
 
 const composeEnhancers =

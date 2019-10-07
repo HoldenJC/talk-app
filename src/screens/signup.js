@@ -23,11 +23,11 @@ class signup extends Component {
 	constructor() {
 		super()
 		this.state = {
-			email: '',
-			password: '',
-			confirmPassword: '',
-			handle: '',
-			errors: {}
+			email           : '',
+			password        : '',
+			confirmPassword : '',
+			handle          : '',
+			errors          : {}
 		}
 	}
 
@@ -40,13 +40,13 @@ class signup extends Component {
 	handleSubmit = (event) => {
 		event.preventDefault()
 		this.setState({
-			loading: true
+			loading : true
 		})
 		const newUserData = {
-			email: this.state.email,
-			password: this.state.password,
-			confirmPassword: this.state.confirmPassword,
-			handle: this.state.handle
+			email           : this.state.email,
+			password        : this.state.password,
+			confirmPassword : this.state.confirmPassword,
+			handle          : this.state.handle
 		}
 		this.props.logoutUser(newUserData, this.props.history)
 	}
@@ -146,15 +146,15 @@ class signup extends Component {
 }
 
 signup.propTypes = {
-	classes: PropTypes.object.isRequired,
-	user: PropTypes.object.isRequired,
-	UI: PropTypes.object.isRequired,
-	logoutUser: PropTypes.func.isRequired
+	classes    : PropTypes.object.isRequired,
+	user       : PropTypes.object.isRequired,
+	UI         : PropTypes.object.isRequired,
+	logoutUser : PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
-	user: state.user,
-	UI: state.UI
+	user : state.user,
+	UI   : state.UI
 })
 
 export default connect(mapStateToProps, { signupUser })(withStyles(styles)(signup))

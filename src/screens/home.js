@@ -34,12 +34,12 @@ class home extends Component {
 }
 
 home.propTypes = {
-	getTalks: PropTypes.func.isRequired,
-	data: PropTypes.object.isRequired
+	getTalks : PropTypes.func.isRequired,
+	data     : PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({
-	data: state.data
+	data : state.data
 })
 
 export default connect(mapStateToProps, { getTalks })(home)
