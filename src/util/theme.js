@@ -41,6 +41,16 @@ export default {
 		},
 		progress    : {
 			position : 'absolute'
+		},
+		label       : {
+			'&$focusedLabel' : {
+				color : '#757de8'
+			}
+		},
+		underline   : {
+			'&:after' : {
+				borderBottom : `2px solid #757de8`
+			}
 		}
 	}
 }

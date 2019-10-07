@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react'
 import withStyles from '@material-ui/core/styles/withStyles'
-import Typography from '@material-ui/core/Typography'
 import PropTypes from 'prop-types'
 import NavButton from '../util/NavButton'
 
@@ -15,9 +14,8 @@ import DeleteOutline from '@material-ui/icons/DeleteOutline'
 
 import { connect } from 'react-redux'
 import { deleteTalk } from '../redux/actions/dataActions'
-import theme from '../util/theme'
 
-const styles = {
+const styles = (theme) => ({
 	...theme.themeStyle,
 	dialogTitle   : {
 		textAlign : 'center'
@@ -37,7 +35,7 @@ const styles = {
 		left     : '90%',
 		top      : '10%'
 	}
-}
+})
 
 class DeleteTalk extends Component {
 	state = {

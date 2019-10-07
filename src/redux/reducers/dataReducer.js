@@ -27,10 +27,9 @@ export default function(state = initialState, action) {
 				...state
 			}
 		case DELETE_TALK:
-			index = state.talks.findIndex((talk) => talk.talkId === action.payload)
-			state.talks.splice(index, 1)
 			return {
-				...state
+				...state,
+				talks : state.talks.filter((talk) => talk.talkId !== action.payload)
 			}
 		case POST_TALK:
 			return {
