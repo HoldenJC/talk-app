@@ -1,4 +1,4 @@
-import { SET_TALKS, LOADING_DATA, LIKE_TALK, UNLIKE_TALK } from '../types'
+import { SET_TALKS, LOADING_DATA, LIKE_TALK, UNLIKE_TALK, DELETE_TALK } from '../types'
 import axios from 'axios'
 
 export const getTalks = () => (dispatch) => {
@@ -38,6 +38,18 @@ export const unlikeTalk = (talkId) => (dispatch) => {
 			dispatch({
 				type: UNLIKE_TALK,
 				payload: res.data
+			})
+		})
+		.catch((err) => console.log(err))
+}
+
+export const deleteTalk = (talkId) => (dispatch) => {
+	axios
+		.delete(`/talk/${talkId}`)
+		.then(() => {
+			dispatch({
+				type: DELETE_TALK,
+				payload: talkId
 			})
 		})
 		.catch((err) => console.log(err))

@@ -6,6 +6,7 @@ import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import PropTypes from 'prop-types'
 import NavButton from '../util/NavButton'
+import DeleteTalk from './DeleteTalk'
 
 // material ui imports
 import Card from '@material-ui/core/Card'
@@ -54,7 +55,7 @@ class Talk extends Component {
 		dayjs.extend(relativeTime)
 		const {
 			classes,
-			user: { authenticated },
+			user: { authenticated, credentials: { handle } },
 			talk: { body, createdAt, userImage, userHandle, talkId, likeCount, commentCount }
 		} = this.props
 		const likeButton = !authenticated ? (
@@ -72,6 +73,7 @@ class Talk extends Component {
 				<FavoriteBorder color="primary" />
 			</NavButton>
 		)
+		const deleteButton = authenticated && userHandle === handle ? <DeleteTalk talkId={talkId} /> : null
 		return (
 			<Card className={classes.card}>
 				<CardMedia image={userImage} title="Profile Picture" className={classes.image} />
@@ -79,6 +81,7 @@ class Talk extends Component {
 					<Typography variant="h5" component={Link} to={`/users/${userHandle}`} color="primary">
 						{userHandle}
 					</Typography>
+					{deleteButton}
 					<Typography variant="body2" color="textSecondary">
 						{dayjs(createdAt).fromNow()}
 					</Typography>

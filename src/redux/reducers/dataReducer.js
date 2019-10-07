@@ -1,4 +1,4 @@
-import { SET_TALKS, LIKE_TALK, UNLIKE_TALK, LOADING_DATA } from '../types'
+import { SET_TALKS, LIKE_TALK, UNLIKE_TALK, LOADING_DATA, DELETE_TALK } from '../types'
 
 const initialState = {
 	talks: [],
@@ -23,6 +23,12 @@ export default function(state = initialState, action) {
 		case UNLIKE_TALK:
 			let index = state.talks.findIndex((talk) => talk.talkId === action.payload.talkId)
 			state.talks[index] = action.payload
+			return {
+				...state
+			}
+		case DELETE_TALK:
+			index = state.talks.findIndex((talk) => talk.talkId === action.payload)
+			state.talks.splice(index, 1)
 			return {
 				...state
 			}
