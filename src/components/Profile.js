@@ -139,7 +139,7 @@ class Profile extends Component {
 						<CalendarToday color="primary" /> <span>Joined {dayjs(createdAt).format('MMM YYYY')}</span>
 					</div>
 					<NavButton tip="Logout" onClick={this.handleLogout} btnClassName="button" placement="right">
-						<KeyboardReturn color="primary" />
+						<KeyboardReturn color="secondary" />
 					</NavButton>
 					<EditDetails />
 				</div>

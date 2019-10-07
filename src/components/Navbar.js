@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import NavButton from '../util/NavButton'
+import LogoIcon from '../images/logo.svg'
 
 // material ui imports
 import AppBar from '@material-ui/core/AppBar'
@@ -27,7 +28,7 @@ class Navbar extends Component {
 							</NavButton>
 							<Link to="/">
 								<NavButton tip="Home">
-									<HomeIcon />
+									<img src={LogoIcon} style={{ width: '35px' }} />
 								</NavButton>
 							</Link>
 							<NavButton tip="Notifications">
