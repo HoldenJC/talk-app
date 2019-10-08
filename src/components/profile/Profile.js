@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import dayjs from 'dayjs'
 import EditDetails from './EditDetails'
 import NavButton from '../../util/NavButton'
+import ProfileSkeleton from '../../util/ProfileSkeleton'
 
 // material ui imports
 import Button from '@material-ui/core/Button'
@@ -24,53 +25,7 @@ import EditIcon from '@material-ui/icons/Edit'
 import KeyboardReturn from '@material-ui/icons/KeyboardReturn'
 
 const styles = (theme) => ({
-	...theme.themeStyle,
-	paper   : {
-		padding : 20,
-		margin  : 20
-	},
-	profile : {
-		'& .image-wrapper'   : {
-			textAlign  : 'center',
-			position   : 'relative',
-			'& button' : {
-				position : 'absolute',
-				top      : '80%',
-				left     : '70%'
-			}
-		},
-		'& .profile-image'   : {
-			width        : 200,
-			height       : 200,
-			objectFit    : 'cover',
-			maxWidth     : '100%',
-			borderRadius : '50%'
-		},
-		'& .profile-details' : {
-			textAlign     : 'center',
-			'& span, svg' : {
-				verticalAlign : 'middle'
-			},
-			'& a'         : {
-				color : theme.palette.primary.main
-			}
-		},
-		'& hr'               : {
-			border : 'none',
-			margin : '0 0 10px 0'
-		},
-		'& svg.button'       : {
-			'&:hover' : {
-				cursor : 'pointer'
-			}
-		}
-	},
-	buttons : {
-		textAlign : 'center',
-		'& a'     : {
-			margin : '20px 10px'
-		}
-	}
+	...theme.themeStyle
 })
 
 class Profile extends Component {
@@ -159,7 +114,7 @@ class Profile extends Component {
 				</div>
 			</Paper>
 		) : (
-			<p>loading...</p>
+			<ProfileSkeleton />
 		)
 
 		return profileMarkup

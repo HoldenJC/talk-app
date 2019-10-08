@@ -4,6 +4,7 @@ import axios from 'axios'
 import Talk from '../components/talk/Talk'
 import StaticProfile from '../components/profile/StaticProfile'
 import TalkSkeleton from '../util/TalkSkeleton'
+import ProfileSkeleton from '../util/ProfileSkeleton'
 
 // materiaul ui imports
 import Grid from '@material-ui/core/Grid'
@@ -57,11 +58,7 @@ class user extends Component {
 					{talksMarkup}
 				</Grid>
 				<Grid item sm={4} xs={12}>
-					{this.state.profile === null ? (
-						<p>Loading profile...</p>
-					) : (
-						<StaticProfile profile={this.state.profile} />
-					)}
+					{this.state.profile === null ? <ProfileSkeleton /> : <StaticProfile profile={this.state.profile} />}
 				</Grid>
 			</Grid>
 		)

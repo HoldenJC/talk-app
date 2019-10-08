@@ -27,6 +27,8 @@ import user from './screens/user'
 
 const theme = createMuiTheme(themeFile)
 
+axios.defaults.baseUrl = 'https://us-central1-talk-5ed06.cloudfunctions.net/api'
+
 const token = localStorage.FBIdToken
 if (token) {
 	const decodedToken = jwtDecode(token)
