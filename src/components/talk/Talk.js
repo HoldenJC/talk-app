@@ -66,7 +66,7 @@ class Talk extends Component {
 						<ChatIcon color="primary" />
 					</NavButton>
 					<span>{commentCount} Comments</span>
-					<TalkDialog talkId={talkId} userHandle={userHandle} />
+					<TalkDialog talkId={talkId} userHandle={userHandle} openDialog={this.props.openDialog} />
 				</CardContent>
 			</Card>
 		)
@@ -74,9 +74,10 @@ class Talk extends Component {
 }
 
 Talk.propTypes = {
-	user    : PropTypes.object.isRequired,
-	talk    : PropTypes.object.isRequired,
-	classes : PropTypes.object.isRequired
+	user       : PropTypes.object.isRequired,
+	talk       : PropTypes.object.isRequired,
+	classes    : PropTypes.object.isRequired,
+	openDialog : PropTypes.bool
 }
 
 const mapStateToProps = (state) => ({

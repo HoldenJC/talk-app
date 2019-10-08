@@ -13,10 +13,15 @@ import { getUserData } from '../redux/actions/dataActions'
 
 class user extends Component {
 	state = {
-		profile : null
+		profile     : null,
+		talkIdParam : null
 	}
 	componentDidMount() {
 		const handle = this.props.match.params.handle
+		const talkId = this.props.match.params.talkId
+
+		if (talkId) this.setState({ talkIdParam: talkId })
+
 		this.props.getUserData(handle)
 		axios
 			.get(`/user/${handle}`)
@@ -30,13 +35,19 @@ class user extends Component {
 
 	render() {
 		const { talks, loading } = this.props.data
+		const { talkIdParam } = this.state
 
 		const talksMarkup = loading ? (
 			<p>Loading data...</p>
 		) : talks === null ? (
 			<p>No talks yet from this user!</p>
-		) : (
+		) : !talkIdParam ? (
 			talks.map((talk) => <Talk key={talk.talkId} talk={talk} />)
+		) : (
+			talks.map((talk) => {
+				if (talk.talkId !== talkIdParam) return <Talk key={talk.talkId} talk={talk} />
+				else return <Talk key={talk.talkId} talk={talk} openDialog />
+			})
 		)
 
 		return (
