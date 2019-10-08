@@ -14,43 +14,52 @@ export default {
 		}
 	},
 	themeStyle : {
-		typography  : {
+		typography       : {
 			useNextVariants : true
 		},
-		form        : {
+		form             : {
 			textAlign : 'center'
 		},
-		image       : {
+		image            : {
 			maxWidth : 200,
 			margin   : '20px auto 20px auto'
 		},
-		screenTitle : {
+		screenTitle      : {
 			margin : '10px auto 10px auto'
 		},
-		textField   : {
+		textField        : {
 			margin : '10px auto 10px auto'
 		},
-		button      : {
+		button           : {
 			marginTop : 20,
 			position  : 'relative'
 		},
-		customError : {
+		customError      : {
 			color     : 'red',
 			fontSize  : '0.8rem',
 			marginTop : 10
 		},
-		progress    : {
+		progress         : {
 			position : 'absolute'
 		},
-		label       : {
+		label            : {
 			'&$focusedLabel' : {
 				color : '#757de8'
 			}
 		},
-		underline   : {
+		underline        : {
 			'&:after' : {
 				borderBottom : `2px solid #757de8`
 			}
+		},
+		stealthSeparator : {
+			border : 'none',
+			margin : 4
+		},
+		separator        : {
+			width        : '100%',
+			borderBottom : '1px solid rgba(0,0,0,0.1)',
+			marginBottom : '20px'
 		}
 	}
 }

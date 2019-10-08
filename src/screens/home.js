@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import Grid from '@material-ui/core/Grid'
 import PropTypes from 'prop-types'
 
-import Talk from '../components/Talk'
-import Profile from '../components/Profile'
+import Talk from '../components/talk/Talk'
+import Profile from '../components/profile/Profile'
 
 import { connect } from 'react-redux'
 import { getTalks } from '../redux/actions/dataActions'

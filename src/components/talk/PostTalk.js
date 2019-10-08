@@ -1,11 +1,11 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import withStyles from '@material-ui/core/styles/withStyles'
-import NavButton from '../util/NavButton'
+import NavButton from '../../util/NavButton'
 
 // Redux imports
 import { connect } from 'react-redux'
-import { postTalk, clearErrors } from '../redux/actions/dataActions'
+import { postTalk, clearErrors } from '../../redux/actions/dataActions'
 
 // Material UI imports
 import Button from '@material-ui/core/Button'

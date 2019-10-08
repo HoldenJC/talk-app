@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import NavButton from '../util/NavButton'
+import NavButton from '../../util/NavButton'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
@@ -9,7 +9,7 @@ import FavoriteBorder from '@material-ui/icons/FavoriteBorder'
 
 // Redux imports
 import { connect } from 'react-redux'
-import { likeTalk, unlikeTalk } from '../redux/actions/dataActions'
+import { likeTalk, unlikeTalk } from '../../redux/actions/dataActions'
 
 class LikeButton extends Component {
 	likedTalk = () => {

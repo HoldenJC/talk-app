@@ -1,18 +1,18 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import withStyles from '@material-ui/core/styles/withStyles'
-import NavButton from '../util/NavButton'
+import NavButton from '../../util/NavButton'
 import LikeButton from './LikeButton'
 import dayjs from 'dayjs'
+import Comments from './Comments'
+import CommentForm from './CommentForm'
 import { Link } from 'react-router-dom'
 
 // Redux imports
 import { connect } from 'react-redux'
-import { getTalk } from '../redux/actions/dataActions'
+import { getTalk, clearErrors } from '../../redux/actions/dataActions'
 
 // material ui imports
-import Button from '@material-ui/core/Button'
-import TextField from '@material-ui/core/TextField'
 import Dialog from '@material-ui/core/Dialog'
 import DialogContent from '@material-ui/core/DialogContent'
 import CircularProgress from '@material-ui/core/CircularProgress'
@@ -26,29 +26,25 @@ import ChatIcon from '@material-ui/icons/Chat'
 
 const styles = (theme) => ({
 	...theme.themeStyle,
-	stealthSeparator : {
-		border : 'none',
-		margin : 4
-	},
-	profileImage     : {
+	profileImage  : {
 		maxWidth     : 200,
 		height       : 200,
 		borderRadius : '50%',
 		objectFit    : 'cover'
 	},
-	dialogContent    : {
+	dialogContent : {
 		padding : 20
 	},
-	closeButton      : {
+	closeButton   : {
 		position : 'absolute',
 		left     : '90%',
 		top      : '4%'
 	},
-	expandTalk       : {
+	expandTalk    : {
 		position : 'absolute',
 		left     : '90%'
 	},
-	spinner          : {
+	spinner       : {
 		textAlign    : 'center',
 		marginTop    : 50,
 		marginBottom : 50
@@ -65,12 +61,13 @@ class TalkDialog extends Component {
 	}
 	handleClose = () => {
 		this.setState({ open: false })
+		this.props.clearErrors()
 	}
 
 	render() {
 		const {
 			classes,
-			talk    : { talkId, body, createdAt, likeCount, commentCount, userImage, userHandle },
+			talk    : { talkId, body, createdAt, likeCount, commentCount, userImage, userHandle, comments },
 			UI      : { loading }
 		} = this.props
 
@@ -81,7 +78,7 @@ class TalkDialog extends Component {
 		) : (
 			<Grid container spacing={16}>
 				<Grid item sm={5}>
-					<img src={userImage} alt="User picture" className={classes.profileImage} />
+					<img src={userImage} alt="User" className={classes.profileImage} />
 				</Grid>
 				<Grid item sm={7}>
 					<Typography component={Link} color="primary" variant="h5" to={`/users/${userHandle}`}>
@@ -100,6 +97,9 @@ class TalkDialog extends Component {
 					</NavButton>
 					<span>{commentCount} Comments</span>
 				</Grid>
+				<hr className={classes.stealthSeparator} />
+				<CommentForm talkId={talkId} />
+				<Comments comments={comments} />
 			</Grid>
 		)
 		return (
@@ -119,11 +119,12 @@ class TalkDialog extends Component {
 }
 
 TalkDialog.propTypes = {
-	getTalk    : PropTypes.func.isRequired,
-	talkId     : PropTypes.string.isRequired,
-	userHandle : PropTypes.string.isRequired,
-	talk       : PropTypes.object.isRequired,
-	UI         : PropTypes.object.isRequired
+	clearErrors : PropTypes.func.isRequired,
+	getTalk     : PropTypes.func.isRequired,
+	talkId      : PropTypes.string.isRequired,
+	userHandle  : PropTypes.string.isRequired,
+	talk        : PropTypes.object.isRequired,
+	UI          : PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({
@@ -132,7 +133,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapActionsToProps = {
-	getTalk
+	getTalk,
+	clearErrors
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(TalkDialog))

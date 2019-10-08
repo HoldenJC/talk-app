@@ -1,15 +1,16 @@
 import {
 	SET_TALKS,
 	LOADING_DATA,
-	LOADING_UI,
 	LIKE_TALK,
 	UNLIKE_TALK,
 	DELETE_TALK,
 	SET_ERRORS,
-	CLEAR_ERRORS,
 	POST_TALK,
+	CLEAR_ERRORS,
+	LOADING_UI,
 	SET_TALK,
-	STOP_LOADING_UI
+	STOP_LOADING_UI,
+	SUBMIT_COMMENT
 } from '../types'
 import axios from 'axios'
 
@@ -56,9 +57,7 @@ export const postTalk = (newTalk) => (dispatch) => {
 				type    : POST_TALK,
 				payload : res.data
 			})
-			dispatch({
-				type : CLEAR_ERRORS
-			})
+			dispatch(clearErrors())
 		})
 		.catch((err) => {
 			dispatch({
@@ -92,6 +91,24 @@ export const unlikeTalk = (talkId) => (dispatch) => {
 		.catch((err) => console.log(err))
 }
 
+export const submitComment = (talkId, commentData) => (dispatch) => {
+	axios
+		.post(`/talk/${talkId}/comment`, commentData)
+		.then((res) => {
+			dispatch({
+				type    : SUBMIT_COMMENT,
+				payload : res.data
+			})
+			dispatch(clearErrors())
+		})
+		.catch((err) => {
+			dispatch({
+				type    : SET_ERRORS,
+				payload : err.response.data
+			})
+		})
+}
+
 export const deleteTalk = (talkId) => (dispatch) => {
 	axios
 		.delete(`/talk/${talkId}`)
@@ -102,6 +119,24 @@ export const deleteTalk = (talkId) => (dispatch) => {
 			})
 		})
 		.catch((err) => console.log(err))
+}
+
+export const getUserData = (userHandle) => (dispatch) => {
+	dispatch({ type: LOADING_DATA })
+	axios
+		.get(`/user/${userHandle}`)
+		.then((res) => {
+			dispatch({
+				type    : SET_TALKS,
+				payload : res.data.talks
+			})
+		})
+		.catch(() => {
+			dispatch({
+				type    : SET_TALKS,
+				payload : null
+			})
+		})
 }
 
 export const clearErrors = () => (dispatch) => {

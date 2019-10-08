@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import withStyles from '@material-ui/core/styles/withStyles'
 import PropTypes from 'prop-types'
-import NavButton from '../util/NavButton'
+import NavButton from '../../util/NavButton'
 
 // material ui imports
 import Button from '@material-ui/core/Button'
@@ -13,7 +13,7 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DeleteOutline from '@material-ui/icons/DeleteOutline'
 
 import { connect } from 'react-redux'
-import { deleteTalk } from '../redux/actions/dataActions'
+import { deleteTalk } from '../../redux/actions/dataActions'
 
 const styles = (theme) => ({
 	...theme.themeStyle,
