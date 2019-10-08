@@ -77,7 +77,16 @@ class Profile extends Component {
 						<hr />
 						{location && (
 							<Fragment>
-								<LocationOn color="primary" /> <span>{location}</span>
+								<LocationOn color="primary" />{' '}
+								<span>
+									<a
+										href={`https://www.google.com/maps/search/${location}`}
+										target="_blank"
+										rel="noopener noreferrer"
+									>
+										{location}
+									</a>
+								</span>
 								<hr />
 							</Fragment>
 						)}
