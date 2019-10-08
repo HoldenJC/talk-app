@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 
 import Talk from '../components/talk/Talk'
 import Profile from '../components/profile/Profile'
+import TalkSkeleton from '../util/TalkSkeleton'
 
 import { connect } from 'react-redux'
 import { getTalks } from '../redux/actions/dataActions'
@@ -17,7 +18,7 @@ class home extends Component {
 		let recentTalksMarkup = !loading ? (
 			talks.map((talk) => <Talk key={talk.talkId} talk={talk} />)
 		) : (
-			<p>Loading...</p>
+			<TalkSkeleton />
 		)
 
 		return (

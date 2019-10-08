@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import axios from 'axios'
 import Talk from '../components/talk/Talk'
 import StaticProfile from '../components/profile/StaticProfile'
+import TalkSkeleton from '../util/TalkSkeleton'
 
 // materiaul ui imports
 import Grid from '@material-ui/core/Grid'
@@ -38,7 +39,7 @@ class user extends Component {
 		const { talkIdParam } = this.state
 
 		const talksMarkup = loading ? (
-			<p>Loading data...</p>
+			<TalkSkeleton />
 		) : talks === null ? (
 			<p>No talks yet from this user!</p>
 		) : !talkIdParam ? (

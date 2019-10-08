@@ -12,9 +12,6 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Button from '@material-ui/core/Button'
 
-// material UI icon imports
-import Notifications from '@material-ui/icons/Notifications'
-
 class Navbar extends Component {
 	render() {
 		const { authenticated } = this.props
