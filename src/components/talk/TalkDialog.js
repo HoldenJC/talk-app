@@ -27,8 +27,9 @@ import ChatIcon from '@material-ui/icons/Chat'
 const styles = (theme) => ({
 	...theme.themeStyle,
 	profileImage  : {
-		maxWidth     : 200,
+		width        : 200,
 		height       : 200,
+		maxWidth     : '100%',
 		borderRadius : '50%',
 		objectFit    : 'cover'
 	},

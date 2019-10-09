@@ -21,7 +21,9 @@ export default {
 			textAlign : 'center'
 		},
 		image            : {
-			maxWidth : 200,
+			width    : 200,
+			height   : 200,
+			maxWidth : '100%',
 			margin   : '20px auto 20px auto'
 		},
 		screenTitle      : {
@@ -80,6 +82,7 @@ export default {
 				height       : 200,
 				objectFit    : 'cover',
 				maxWidth     : '100%',
+				maxHeight    : '100%',
 				borderRadius : '50%'
 			},
 			'& .profile-details' : {

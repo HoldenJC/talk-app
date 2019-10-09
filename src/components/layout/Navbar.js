@@ -11,6 +11,7 @@ import Notifications from './Notifications'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Button from '@material-ui/core/Button'
+import Tooltip from '@material-ui/core/Tooltip'
 
 class Navbar extends Component {
 	render() {
@@ -33,9 +34,12 @@ class Navbar extends Component {
 							<Button color="inherit" component={Link} to="/login">
 								Login
 							</Button>
-							<Button color="inherit" component={Link} to="/">
-								Home
-							</Button>
+							<Tooltip title="Home" placement="bottom">
+								<Button color="inherit" component={Link} to="/">
+									<img src={LogoIcon} alt="Home" style={{ width: '35px' }} />
+								</Button>
+							</Tooltip>
+
 							<Button color="inherit" component={Link} to="/signup">
 								Signup
 							</Button>

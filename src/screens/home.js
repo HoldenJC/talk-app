@@ -25,7 +25,19 @@ class home extends Component {
 		return (
 			<Grid container spacing={16}>
 				<Grid item sm={8} xs={12}>
-					{recentTalksMarkup}
+					<div
+						style={{
+							height         : '92vh',
+							width          : '100%',
+							overflow       : 'scroll',
+							marginBottom   : '15vh',
+							marginTop      : -25,
+							paddingTop     : 25,
+							scrollbarWidth : 'none'
+						}}
+					>
+						{recentTalksMarkup}
+					</div>
 				</Grid>
 				<Grid item sm={4} xs={12}>
 					<Profile />
