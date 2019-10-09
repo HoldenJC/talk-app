@@ -63,7 +63,7 @@ class CommentForm extends Component {
 						Submit
 					</Button>
 				</form>
-				<hr className={classes.separator} />
+				<hr className={classes.stealthSeparator} />
 			</Grid>
 		) : null
 

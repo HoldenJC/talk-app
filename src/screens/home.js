@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import Talk from '../components/talk/Talk'
 import Profile from '../components/profile/Profile'
 import TalkSkeleton from '../util/TalkSkeleton'
+import NewsFeed from '../components/layout/NewsFeed'
 
 import { connect } from 'react-redux'
 import { getTalks } from '../redux/actions/dataActions'
@@ -28,6 +29,7 @@ class home extends Component {
 				</Grid>
 				<Grid item sm={4} xs={12}>
 					<Profile />
+					<NewsFeed />
 				</Grid>
 			</Grid>
 		)
