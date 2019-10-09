@@ -5,7 +5,7 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import axios from 'axios'
 import dayjs from 'dayjs'
-import NoImg from '../../images/no-img.svg'
+import relativeTime from 'dayjs/plugin/relativeTime'
 
 // material ui imports
 import Paper from '@material-ui/core/Paper'
@@ -22,6 +22,26 @@ const styles = (theme) => ({
 		maxWidth  : '100%',
 		objectFit : 'cover',
 		padding   : '0px 0px 10px 0px'
+	},
+	slideDiv   : {
+		marginBottom : 25,
+		padding      : 5
+	},
+	aClass     : {
+		color : 'inherit'
+	},
+	timeStyle  : {
+		display   : 'block',
+		textAlign : 'center',
+		color     : 'rgba(0,0,0,0.3)',
+		position  : 'relative',
+		bottom    : '5px'
+	},
+	storyTitle : {
+		fontWeight : 600
+	},
+	storyDesc  : {
+		color : 'rgba(0,0,0,0.5)'
 	}
 })
 
@@ -42,28 +62,37 @@ class NewsFeed extends React.Component {
 	}
 
 	render() {
+		dayjs.extend(relativeTime)
 		const { classes } = this.props
 		const { news } = this.state
 
 		const newsContent = news.map((story, index) => (
-			<div key={index} className={classes.slideDiv}>
-				<div className="image-wrapper">
-					{console.log(story.urlToImage)}
-					<img src={story.urlToImage} className={classes.storyImage} />
+			<a className={classes.aClass} href={story.url} target="_blank" rel="noopener noreferrer">
+				<div key={index} className={classes.slideDiv}>
+					<div>
+						{console.log(story.urlToImage)}
+						<img src={story.urlToImage} className={classes.storyImage} />
+					</div>
+					<span className={classes.timeStyle}>{dayjs(story.publishedAt).fromNow()}</span>
+					<hr className={classes.stealthSeparator} />
+					<span className={classes.storyTitle}>{story.title}</span>
+					<hr className={classes.stealthSeparator} />
+					<span className={classes.storyDesc}>{story.description}</span>
+					<hr className={classes.stealthSeparator} />
+					Story by {story.author}
 				</div>
-				{dayjs(story.publishedAt).format('h:mm a, MMMM DD YYYY')}
-				<hr className={classes.stealthSeparator} />
-				{story.title}
-			</div>
+			</a>
 		))
 
 		const settings = {
-			dots           : true,
-			infinite       : false,
+			dots           : false,
+			infinite       : true,
 			arrows         : false,
+			autoplay       : true,
+			autoplaySpeed  : 3000,
 			accessiblity   : true,
-			lazyLoad       : 'progressive',
-			speed          : 500,
+			lazyLoad       : 'ondemand',
+			speed          : 1000,
 			slidesToScroll : 1,
 			slidesToShow   : 1
 		}
@@ -73,7 +102,6 @@ class NewsFeed extends React.Component {
 					<Slider {...settings} className={classes.slider}>
 						{newsContent}
 					</Slider>
-					<br />
 				</div>
 			</Paper>
 		)

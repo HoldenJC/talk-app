@@ -48,7 +48,7 @@ class signup extends Component {
 			confirmPassword : this.state.confirmPassword,
 			handle          : this.state.handle
 		}
-		this.props.logoutUser(newUserData, this.props.history)
+		this.props.signupUser(newUserData, this.props.history)
 	}
 
 	handleChange = (event) => {
@@ -149,7 +149,7 @@ signup.propTypes = {
 	classes    : PropTypes.object.isRequired,
 	user       : PropTypes.object.isRequired,
 	UI         : PropTypes.object.isRequired,
-	logoutUser : PropTypes.func.isRequired
+	signupUser : PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
