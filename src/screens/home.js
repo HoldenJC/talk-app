@@ -16,6 +16,7 @@ class home extends Component {
 	}
 	render() {
 		const { talks, loading } = this.props.data
+		console.log(this.props.data)
 		let recentTalksMarkup = !loading ? (
 			talks.map((talk) => <Talk key={talk.talkId} talk={talk} />)
 		) : (

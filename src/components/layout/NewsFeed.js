@@ -6,55 +6,48 @@ import 'slick-carousel/slick/slick-theme.css'
 import axios from 'axios'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
+import NewsSkeleton from '../../util/NewsSkeleton'
 
 // material ui imports
 import Paper from '@material-ui/core/Paper'
 import withStyles from '@material-ui/core/styles/withStyles'
-import CircularProgress from '@material-ui/core/CircularProgress'
 
 const styles = (theme) => ({
 	...theme.themeStyle,
-	slideDiv       : {
-		width  : '100%',
-		height : '100%'
+	slideDiv   : {
+		width        : '100%',
+		height       : '100%',
+		marginBottom : 25,
+		padding      : 5
 	},
-	slider         : {
+	slider     : {
 		height         : 397,
 		overflow       : 'auto',
 		scrollbarWidth : 'none'
 	},
-	storyImage     : {
+	storyImage : {
 		height    : 200,
 		objectFit : 'cover',
 		display   : 'block',
 		margin    : 'auto',
 		padding   : '0px 0px 10px 0px'
 	},
-	slideDiv       : {
-		marginBottom : 25,
-		padding      : 5
-	},
-	aClass         : {
+	aClass     : {
 		color : 'inherit'
 	},
-	timeStyle      : {
+	timeStyle  : {
 		display   : 'block',
 		textAlign : 'center',
 		color     : 'rgba(0,0,0,0.3)',
 		position  : 'relative',
 		bottom    : '5px'
 	},
-	storyTitle     : {
-		fontWeight : 600
+	storyTitle : {
+		fontWeight : 600,
+		color      : theme.palette.primary.main
 	},
-	storyDesc      : {
+	storyDesc  : {
 		color : 'rgba(0,0,0,0.5)'
-	},
-	loadingSpinner : {
-		padding   : 15,
-		width     : '75%',
-		textAlign : 'center',
-		objectFit : 'cover'
 	}
 })
 
@@ -67,7 +60,6 @@ class NewsFeed extends React.Component {
 		axios
 			.get(`https://newsapi.org/v2/top-headlines?country=us&apiKey=12f761599239415d99ec6007d6f6f87c`)
 			.then((res) => {
-				console.log(res.data.articles)
 				this.setState({
 					news    : res.data.articles,
 					loading : false
@@ -90,8 +82,6 @@ class NewsFeed extends React.Component {
 							className={classes.storyImage}
 							onError={(i) => (i.target.style.display = 'none')}
 						/>
-						{console.log(story.urlToImage)}
-						{console.log(story.author)}
 					</div>
 					<span className={classes.timeStyle}>{dayjs(story.publishedAt).fromNow()}</span>
 					<hr className={classes.stealthSeparator} />
@@ -122,11 +112,7 @@ class NewsFeed extends React.Component {
 			<Paper className={classes.paper}>
 				<div className={classes.profile}>
 					<Slider {...settings} className={classes.slider}>
-						{loading === true ? (
-							<CircularProgress size={15} className={classes.loadingSpinner} />
-						) : (
-							newsContent
-						)}
+						{loading === true ? <NewsSkeleton /> : newsContent}
 					</Slider>
 				</div>
 			</Paper>

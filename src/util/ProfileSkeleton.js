@@ -52,7 +52,7 @@ const ProfileSkeleton = (props) => {
 					<hr />
 					<LinkIcon color="primary" /> <span style={{ color: '#3F51B5' }}>https://website.com</span>
 					<hr />
-					<CalendarToday color="primary" /> <span>Joined date</span>
+					<CalendarToday color="primary" style={{ marginBottom: 39 }} /> <span>Joined date</span>
 				</div>
 			</div>
 		</Paper>
