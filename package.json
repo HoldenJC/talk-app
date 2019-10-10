@@ -1,5 +1,6 @@
 {
 	"name": "talk-app",
+	"homepage": "https://talk-5ed06.firebaseapp.com",
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
